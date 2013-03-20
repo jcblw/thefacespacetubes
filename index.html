@@ -16,17 +16,13 @@
 				success : function(res){
 					data[index] = res;
 					if(index === calls.length - 1){
-						done();
+						parse();
 					}else{
 						current += 1;
 						queue();
 					}
 				}
 			});
-		};
-		var done = function(){
-			console.log(data);
-			parse();
 		};
 		var queue = function(){
 			load(current);
@@ -52,7 +48,6 @@
 				"<img src=\"{{image}}\">" + 
 			"</div>{{/entry}}";
 		var render = function(){
-			console.log(entries);
 			var html = Mustache.render(temp, { entry : entries });
 			content.html(html);
 		};
